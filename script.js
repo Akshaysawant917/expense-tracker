@@ -26,18 +26,21 @@ function getUserIncome() {
 getUserIncome();
 
 submitBtn.addEventListener("click", function () {
-  const incomeValue = incomeInput.value.trim();
-  if (incomeValue) {
-    localStorage.setItem("userIncome", incomeValue);
-  }
-});
-
+    const incomeValue = incomeInput.value.trim();
+    if (incomeValue) {
+      localStorage.setItem("userIncome", incomeValue);
+      getUserIncome(); // Refresh UI
+    }
+  });
+  
 expenseSubmit.addEventListener("click", function (event) {
   event.preventDefault();
   const nameValue = expenseName.value.trim();
   const amountValue = expenseInput.value.trim();
   if (nameValue && amountValue && !isNaN(amountValue)) {
     let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    console.log(expenses);
+    
     expenses.push({ name: nameValue, amount: parseFloat(amountValue) });
     localStorage.setItem("expenses", JSON.stringify(expenses));
 
@@ -49,9 +52,15 @@ expenseSubmit.addEventListener("click", function (event) {
   }
 });
 
-function displayExpenses(){
-    let expenses=JSON.parse(localStorage.getItem('expenses'))
-    expenseList.innerHTML = "";
+function displayExpenses() {
+    let expenses = JSON.parse(localStorage.getItem("expenses")) || []; // Ensure it's always an array
+    expenseList.innerHTML = ""; // Clear previous entries
+
+    if (expenses.length === 0) {
+        expenseList.innerHTML = `<p class="text-gray-600 text-center">No expenses added yet.</p>`;
+        return;
+    }
+
     expenses.forEach((expense, index) => {
         let expenseItem = document.createElement("div");
         expenseItem.classList.add("flex", "justify-between", "bg-gray-100", "p-2", "rounded-lg", "mt-2");
@@ -64,6 +73,7 @@ function displayExpenses(){
         expenseList.appendChild(expenseItem);
     });
 }
+
 
 function deleteExpense(index) {
     let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
