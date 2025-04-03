@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gradient-to-r from-blue-400 to-purple-500 min-h-screen flex flex-col items-center justify-start pt-1">
+    <div class="bg-white p-6 rounded-xl shadow-lg w-96 text-center">
+      <h1 class="text-3xl font-bold text-gray-800 mb-4">Expense Tracker</h1>
+
+      <!-- Income Input Form -->
+      <div id="incomeForm" class="space-y-4">
+        <label for="income" class="block text-lg font-semibold text-gray-700">Enter Your Income</label>
+        <input 
+          type="text" 
+          id="income" 
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 text-center text-xl"
+          placeholder="₹ Enter amount"
+        />
+        <button 
+          type="button" 
+          id="submit-btn" 
+          class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded-lg transition">
+          Submit
+        </button>
+      </div>
+            <!-- Display Income Here -->
+            <div id="incomeDisplay" class="hidden mt-4 text-lg font-semibold text-gray-800"></div>
+    </div>
+    
+    <div id="expenseForm" class="hidden pt-2 bg-white p-6 rounded-xl shadow-lg w-96 text-center mt-4">
+        <h2 class="text-lg font-semibold text-gray-800">Add Expense</h2>
+        <form action="" id="expenseFormElement">
+            <label for="expenseName" class="block text-sm font-medium text-gray-700 mt-2">Expense Name</label>
+            <input type="text" id="expenseName" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 text-center" placeholder="E.g. Food, Rent" />
+    
+            <label for="expenseVal" class="block text-sm font-medium text-gray-700 mt-2">Expense Amount</label>
+            <input type="number" id="expenseVal" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 text-center" placeholder="₹ Enter amount" />
+    
+            <button type="submit" id="expenseSubmit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded-lg transition mt-3">
+                Add Expense
+            </button>
+        </form>
+    
+        <!-- Expenses List -->
+        <div id="expenseList" class="mt-4 text-left"></div>
+    </div>
+    
+
+    <script src="script.js"></script>
+  </body>
+</html>
